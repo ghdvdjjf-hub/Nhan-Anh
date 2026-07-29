@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhận ảnh sự kiện</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#333;
+    margin-bottom:15px;
+}
+
+p{
+    color:#666;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+button{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:#1877F2;
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:30px 20px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+    button{
+        font-size:18px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📸 NHẬT ẢNH PTB</h1>
+
+    <div id="start">
+
+        <p>
+            Sau khi Follow Fanpage bạn hãy quay lại trang này để nhận ảnh nhé ❤️
+        </p>
+
+        <button id="followBtn">
+            👉 FOLLOW PAGE
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const followLink = "https://www.facebook.com/SMAEMedia.HaUI?locale=vi_VN";
+
+const followBtn = document.getElementById("followBtn");
+
+//============================
+// Kiểm tra trạng thái Follow
+//============================
+function checkFollowStatus(){
+
+    const followTime = Number(sessionStorage.getItem("followTime"));
+
+    if(!followTime) return;
+
+    const passed = Math.floor((Date.now() - followTime) / 1000);
+
+    if(passed >= 20){
+
+        // Đủ 20 giây
+        sessionStorage.removeItem("followTime");
+        window.location.href = "receive.html";
+
+    }else{
+
+        // Chưa đủ 20 giây
+        window.location.href = "notice.html";
+
+    }
+
+}
+
+//============================
+// Khi bấm Follow
+//============================
+followBtn.onclick = function(){
+
+    // Lưu thời điểm bấm
+   sessionStorage.setItem("followTime", Date.now());
+
+    // Mở Fanpage
+    window.open(followLink, "_blank");
+
+}
+
+//============================
+// Khi người dùng quay lại
+//============================
+window.addEventListener("pageshow", checkFollowStatus);
+window.addEventListener("focus", checkFollowStatus);
+document.addEventListener("visibilitychange", function () {
+
+    if (!document.hidden) {
+        checkFollowStatus();
+    }
+
+});
+
+// Kiểm tra khi tải trang
+checkFollowStatus();
+
+</script>
+
+</body>
+</html>

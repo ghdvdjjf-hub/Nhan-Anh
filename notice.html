@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vui lòng Follow Fanpage</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#ff3b30;
+    margin-bottom:20px;
+}
+
+p{
+    color:#555;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.loading{
+    margin:30px auto 0;
+    width:50px;
+    height:50px;
+    border:6px solid #ddd;
+    border-top:6px solid #1877F2;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚠️ Vui lòng Follow Fanpage</h1>
+
+<p>
+Bạn hãy Follow Fanpage trước rồi quay lại trang này để nhận ảnh nhé ❤️
+</p>
+
+<p>
+Hệ thống sẽ tự động chuyển sang trang nhận ảnh khi bạn đã Follow Fanpage.
+</p>
+
+<div class="loading"></div>
+
+</div>
+
+<script>
+
+const followTime = Number(sessionStorage.getItem("followTime"));
+
+if(!followTime){
+    window.location.href = "index.html";
+}
+
+function checkTime(){
+
+    const passed = Math.floor((Date.now() - followTime)/1000);
+
+    if(passed >= 20){
+
+        sessionStorage.removeItem("followTime");
+
+        window.location.href = "receive.html";
+
+    }
+
+}
+
+// Kiểm tra ngay khi vào trang
+checkTime();
+
+// Kiểm tra mỗi giây
+setInterval(checkTime,1000);
+
+</script>
+
+</body>
+</html>
