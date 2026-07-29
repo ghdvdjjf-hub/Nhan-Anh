@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhận ảnh sự kiện</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#333;
+    margin-bottom:15px;
+}
+
+p{
+    color:#666;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+
+button{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:#1877F2;
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+#countdown,
+#receive{
+    display:none;
+}
+
+.timer{
+    margin:25px 0;
+    font-size:65px;
+    font-weight:bold;
+    color:#ff3b30;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#ddd;
+    border-radius:30px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#1877F2;
+    transition:1s;
+}
+
+.receive-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:16px 35px;
+    background:#28a745;
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.receive-btn:hover{
+    transform:scale(1.05);
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:30px 20px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+    button{
+        font-size:18px;
+    }
+
+    .timer{
+        font-size:50px;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📸 NHẬN ẢNH PTB</h1>
+
+    <div id="start">
+
+        <p>
+            Sau khi follow fanpage bạn hãy quay lại trang này để nhận ảnh nhé ❤️
+        </p>
+
+        <button id="followBtn">
+            👉 FOLLOW PAGE 
+        </button>
+
+    </div>
+
+    <div id="receive">
+
+        <h2>🎉 Cảm ơn bạn!</h2>
+
+        <p>Nhấn nút bên dưới để nhận ảnh.</p>
+
+        <a
+        class="receive-btn"
+        href="https://drive.google.com/xxxxx"
+        target="_blank">
+        📷 NHẬN ẢNH NGAY
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+    const followLink = "https://www.facebook.com/SMAEMedia.HaUI?locale=vi_VN";
+
+    const followBtn = document.getElementById("followBtn");
+    const start = document.getElementById("start");
+    const receive = document.getElementById("receive");
+
+    // Nếu trước đó đã bấm Follow thì khi mở lại trang sẽ hiện trang nhận ảnh
+    function checkFollowStatus() {
+        if (localStorage.getItem("followed") === "true") {
+            start.style.display = "none";
+            receive.style.display = "block";
+        }
+    }
+
+    // Khi bấm nút Follow
+    followBtn.onclick = function () {
+
+        // Lưu trạng thái
+        localStorage.setItem("followed", "true");
+
+        // Mở Facebook
+        window.open(followLink, "_blank");
+    }
+
+    // Khi quay lại trang
+    window.addEventListener("pageshow", checkFollowStatus);
+    window.addEventListener("focus", checkFollowStatus);
+    document.addEventListener("visibilitychange", checkFollowStatus);
+
+    // Khi tải trang lần đầu
+    checkFollowStatus();
+
+</script>
+
+
+
+</body>
+</html>
