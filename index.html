@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMAE Media Photobooth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;700;900&family=Roboto:wght@400;500;700;900&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/batman-forever" rel="stylesheet">
+</head>
+<body>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Page 1: Follow Page -->
+    <div id="page-follow" class="page active">
+        <div class="content-container">
+            <div class="logo-container">
+                <img src="LOGO.png" alt="SMAE Media Logo" class="logo shake-animation" onerror="this.src='https://placehold.co/200x200/004a8c/fff?text=SMAE+Logo'">
+            </div>
+            
+            <div class="text-center brand-text">
+                <h2 class="dept-name">BỘ PHẬN TRUYỀN THÔNG TRƯỜNG CƠ KHÍ - Ô TÔ</h2>
+                <h1 class="brand-name">SMAE MEDIA</h1>
+            </div>
+
+            <div class="action-card glass-panel text-center">
+                <p class="action-title">Lấy ảnh photobooth <span class="shake-animation d-inline-block">📷</span></p>
+                <p class="action-desc">Hãy Follow Fanpage chúng mình rồi quay lại trang này để nhận ảnh nhé ❤️</p>
+                
+                <button id="btn-follow" class="btn-primary slow-zoom" style="color: white;">Follow Fanpage</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Loading Page (30s) -->
+    <div id="page-loading" class="page">
+        <div class="content-container flex-col-center">
+            <div class="glass-panel text-center loading-panel">
+                <div class="spinner-container">
+                    <div class="loading-spinner"></div>
+                </div>
+                
+                <h2 class="loading-title">
+                    <span class="text-gold wait-text">Vui lòng follow fanpage rồi quay lại trang này để nhận ảnh</span><br>
+                    <span class="text-gray-small">Hệ thống sẽ tự động chuyển sang trang nhận ảnh khi bạn đã follow fanpage</span>
+                </h2>
+                
+                <div class="animation-container">
+                    <div class="progress-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                        <div id="progress-character" class="progress-character">
+                            <span id="char-running" class="char-icon running">🏃🏻‍♀️</span>
+                            <span id="char-graduated" class="char-icon hidden">🎓👩🏻‍🎓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Result Page -->
+    <div id="page-result" class="page">
+        <div class="content-container flex-col-center">
+            <div class="glass-panel text-center result-card">
+                <div class="success-icon pulse-animation">🎉</div>
+                <h2 class="success-title vietnamese-font">Cảm ơn bạn đã chờ đợi!</h2>
+                <p class="success-desc text-gray">Ảnh của bạn đã sẵn sàng. Hãy nhấn nút bên dưới để tải về nhé.</p>
+                
+                <a href="https://drive.google.com/drive/folders/1ziDNNg4urr6xts5almCxpGH1-Kl9r4tV" target="_blank" class="btn-primary btn-result vietnamese-font slow-zoom">Nhận ảnh</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
